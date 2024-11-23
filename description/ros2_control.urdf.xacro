@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="ros2_control_macros.urdf.xacro" />
+
+    <ros2_control name="power_unit_v3" type="system">
+        <hardware>  
+            <plugin>ign_ros2_control/IgnitionSystem</plugin>
+        </hardware>
+        <!-- Add joint hardware interfaces -->
+        <xacro:include filename="ros2_control_macros.urdf.xacro" />
+        <xacro:ros2_control_joint_macro name="shaft" pos_min="${-pi}" pos_max="${pi}" vel_max="${1000.0}" eff_max="${100.0}"/>
+    </ros2_control>
+
+    <gazebo>
+        <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+            <parameters>$(find power_unit_v3)/controllers/joint_controller.yaml</parameters>
+        </plugin>
+    </gazebo>
+
+</robot>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<robot name="power_unit_v3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="ros2_control.urdf.xacro" />
+    <xacro:include filename="macros/link_macros.urdf.xacro" />
+    <xacro:property name="body_l" value="0.1" />
+    <xacro:property name="body_w" value="0.1" />
+    <xacro:property name="body_h" value="0.086" />
+    <xacro:property name="shaft_h" value="0.014" />
+    <xacro:property name="shaft_d" value="0.035" />
+
+    <link name="base_link" />
+
+    <xacro:stator_link_macro 
+        length="${body_l}" width="${body_w}" height="${body_h}" 
+        xyz="0 0 0" 
+        mass="10.0" 
+        xc="0" yc="0" zc="0" 
+        ixx="${0.17}"  ixy="${0.0}"  ixz="${0.0}" 
+                       iyy="${0.22}" iyz="${0.0}" 
+                                     izz="${0.25}" />
+
+    <xacro:rotor_link_macro 
+        d="${shaft_d}" length="${shaft_h}" 
+        xyz="0 0 ${shaft_h/2.0}" 
+        mass="1.0" 
+        xc="0.0" yc="0.0" zc="0.0" 
+        ixx="0.0225" ixy="0.0" ixz="0.0" 
+                     iyy="0.0225"    iyz="0.0" 
+                               izz="0.0225" />
+
+
+    <joint name="base_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="stator_link" />
+        <origin xyz="0 0 0.2" rpy="0 0 0" />
+    </joint>
+
+    <joint name="shaft_joint" type="continuous">
+        <parent link="stator_link" />
+        <child link="rotor_link" />
+        <origin xyz="0 0 ${body_h/2.0}" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+
+
+</robot>
