@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="reduction" value="9.97" />
+    <!-- MAX MOTOR SPEED RPM -->
+    <xacro:property name="motor_max_vel" value="1800" />
+    <xacro:property name="motor_max_torque" value="3.5" />
+
+</robot>

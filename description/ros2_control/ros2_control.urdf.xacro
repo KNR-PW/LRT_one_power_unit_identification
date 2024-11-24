@@ -2,14 +2,15 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:include filename="ros2_control_macros.urdf.xacro" />
+    <xacro:include filename="hardware_properties.urdf.xacro" />
 
     <ros2_control name="power_unit_v3" type="system">
-        <hardware>  
+        <hardware>
             <plugin>ign_ros2_control/IgnitionSystem</plugin>
         </hardware>
         <!-- Add joint hardware interfaces -->
         <xacro:include filename="ros2_control_macros.urdf.xacro" />
-        <xacro:ros2_control_joint_macro name="shaft" pos_min="${-pi}" pos_max="${pi}" vel_max="${1000.0}" eff_max="${100.0}"/>
+        <xacro:ros2_control_joint_macro name="shaft" pos_min="${-pi}" pos_max="${pi}" vel_max="${(motor_max_vel*pi/30.0)/reduction}" eff_max="${motor_max_torque*reduction}"/>
     </ros2_control>
 
     <gazebo>
