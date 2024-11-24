@@ -4,8 +4,6 @@
     <xacro:macro name="ros2_control_joint_macro" params="name pos_min pos_max vel_max eff_max">
         <joint name="${name}_joint">
 
-          <!-- co jesli joint continuous? -->
-
             <command_interface name="position">  
               <param name="min">${pos_min}</param>
               <param name="max">${pos_max}</param>
@@ -17,14 +15,9 @@
             </command_interface>
 
             <command_interface name="effort">
-              <param name="min">${-100000}</param>
-              <param name="max">${100000}</param>
+              <param name="min">${-eff_max}</param>
+              <param name="max">${eff_max}</param>
             </command_interface>
-
-            <!-- <command_interface name="effort">
-              <param name="min">${-eff_max/actuator_reduction}</param>
-              <param name="max">${eff_max/actuator_reduction}</param>
-            </command_interface> -->
 
             <state_interface name="position" />
             <state_interface name="velocity"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="stator_link_macro" params="length width height xyz mass xc yc zc ixx ixy ixz iyy iyz izz">
+    <xacro:macro name="stator_link_macro" params="length width height mass xc yc zc ixx ixy ixz iyy iyz izz">
         <link name="stator_link">
 
             <visual>
@@ -11,14 +11,14 @@
                 <geometry>
                     <box size="${length} ${width} ${height}" />
                 </geometry>
-                <origin xyz="${xyz}" rpy="0 0 0" />
+                <origin xyz="0 0 ${height/2.0}" rpy="0 0 0" />
             </visual>
                 
             <collision>
                 <geometry>
                     <box size="${length} ${width} ${height}" />
                 </geometry>
-                <origin xyz="${xyz}" rpy="0 0 0" />
+                <origin xyz="0 0 ${height/2.0}" rpy="0 0 0" />
             </collision>
 
             <inertial>
@@ -33,7 +33,7 @@
 
     </xacro:macro>
 
-    <xacro:macro name="rotor_link_macro" params="d length xyz mass xc yc zc ixx ixy ixz iyy iyz izz">
+    <xacro:macro name="rotor_link_macro" params="d length mass xc yc zc ixx ixy ixz iyy iyz izz">
         <link name="rotor_link">
 
             <visual>
@@ -43,7 +43,7 @@
                 <geometry>
                     <cylinder radius="${d/2.0}" length="${length}" />
                 </geometry>
-                <origin xyz="${xyz}" rpy="0 0 0" />
+                <origin xyz="0 0 ${body_h + length/2.0}" rpy="0 0 0" />
             </visual>
 
             <visual>
@@ -53,22 +53,22 @@
                 <geometry>
                     <box size="${2*d} ${d/3.0} ${length}" />
                 </geometry>
-                <origin xyz="${xyz}" rpy="0 0 0" />
+                <origin xyz="0 0 ${body_h + length/2.0}" rpy="0 0 0" />
             </visual>
                 
             <collision>
                 <geometry>
                     <cylinder radius="${d/2.0}" length="${length}" />
                 </geometry>
-                <origin xyz="${xyz}" rpy="0 0 0" />
+                <origin xyz="0 0 ${body_h + length/2.0}" rpy="0 0 0" />
             </collision>
 
             <inertial>
                 <mass value="${mass}"/>
-                <origin xyz="${xc} ${yc} ${zc}" rpy="0 0 0" />
-                <inertia ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"
-                                      iyy="${iyy}" iyz="${iyz}"
-                                                   izz="${izz}" />
+                <origin xyz="${xc*0.001} ${yc*0.001} ${zc*0.001}" rpy="0 0 0" />
+                <inertia ixx="${ixx*0.000001}" ixy="${ixy*0.000001}" ixz="${ixz*0.000001}"
+                                      iyy="${iyy*0.000001}" iyz="${iyz*0.000001}"
+                                                   izz="${izz*0.000001}" />
             </inertial>
 
         </link>
