@@ -25,7 +25,7 @@ joint_controller:
 
     pid_gains:
       shaft_joint:
-        p: 15.0
-        d: 0.2
+        p: 1.7
+        d: 0.05
         i: 0.0
         ilimit: 100.0

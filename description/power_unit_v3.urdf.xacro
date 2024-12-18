@@ -3,13 +3,15 @@
 
     <xacro:include filename="ros2_control/ros2_control.urdf.xacro" />
     <xacro:include filename="macros/link_macros.urdf.xacro" />
+    <xacro:include filename="gazebo/gz_properties.urdf.xacro"/>
+    <xacro:include filename="gazebo/gazebo.urdf.xacro"/>
     <xacro:property name="body_l" value="0.1" />
     <xacro:property name="body_w" value="0.1" />
     <xacro:property name="body_h" value="0.086" />
     <xacro:property name="shaft_h" value="0.014" />
     <xacro:property name="shaft_d" value="0.035" />
 
-    <link name="base_link" />
+    <link name="world" />
 
     <xacro:stator_link_macro 
         length="${body_l}" width="${body_w}" height="${body_h}" 
@@ -29,15 +31,16 @@
 
 
     <joint name="base_joint" type="fixed">
-        <parent link="base_link" />
+        <parent link="world" />
         <child link="stator_link" />
-        <origin xyz="0 0 0.2" rpy="0 0 0" />
+        <origin xyz="0 0 0.1" rpy="0 0 0" />
     </joint>
 
-    <joint name="shaft_joint" type="continuous">
+    <joint name="shaft_joint" type="revolute">
         <parent link="stator_link" />
         <child link="rotor_link" />
         <origin xyz="0 0 0" rpy="0 0 0" />
+        <limit lower="${-1000*pi}" upper="${1000*pi}" effort="${motor_max_torque*reduction}" velocity="${motor_max_vel*pi/30/reduction}" />
         <axis xyz="0 0 1" />
     </joint>
 
