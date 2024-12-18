@@ -27,5 +27,5 @@ joint_controller:
       shaft_joint:
         p: 15.0
         d: 0.2
-        i: 0.0
-        ilimit: 100.0
+        i: 100.0
+        ilimit: 100000.0
