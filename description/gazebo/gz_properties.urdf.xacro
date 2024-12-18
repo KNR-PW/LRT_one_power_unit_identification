@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Gazebo joint parameters -->
+    <xacro:property name="implicitSpringDamper_value" value="0" />
+    <xacro:property name="springStiffness_value" value="0" />
+    <xacro:property name="springReference_value" value="0" />
+    <xacro:property name="implicitSpringDamper_value" value="0" />
+    <xacro:property name="stopErp_value" value="0" />
+    <xacro:property name="stopCfm_value" value="0" />
+
+    <!-- Gazebo link parameters -->
+    <xacro:property name="mu1_value" value="0" />
+    <xacro:property name="mu2_value" value="0" />
+    <xacro:property name="kp_value" value="0" />
+    <xacro:property name="kd_value" value="0" />
+    <xacro:property name="maxVel_value" value="0" />
+    <xacro:property name="dampingFactor_value" value="0" />
+
+</robot>
