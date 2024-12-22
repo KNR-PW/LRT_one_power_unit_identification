@@ -43,7 +43,7 @@
                 <geometry>
                     <cylinder radius="${d/2.0}" length="${length}" />
                 </geometry>
-                <origin xyz="0 0 ${body_h + length/2.0}" rpy="0 0 0" />
+                <origin xyz="0 0 ${length/2}" rpy="0 0 0" />
             </visual>
 
             <visual>
@@ -53,14 +53,14 @@
                 <geometry>
                     <box size="${2*d} ${d/3.0} ${length}" />
                 </geometry>
-                <origin xyz="0 0 ${body_h + length/2.0}" rpy="0 0 0" />
+                <origin xyz="0 0 ${length/2}" rpy="0 0 0" />
             </visual>
                 
             <collision>
                 <geometry>
                     <cylinder radius="${d/2.0}" length="${length}" />
                 </geometry>
-                <origin xyz="0 0 ${body_h + length/2.0}" rpy="0 0 0" />
+                <origin xyz="0 0 ${length/2}" rpy="0 0 0" />
             </collision>
 
             <inertial>

@@ -24,10 +24,10 @@
     <xacro:rotor_link_macro 
         d="${shaft_d}" length="${shaft_h}" 
         mass="0.585" 
-        xc="0.0" yc="0.0" zc="47.721" 
-        ixx="496.884" ixy="0.0" ixz="0.0" 
-                     iyy="496.884"    iyz="0.0" 
-                               izz="535.230" />
+        xc="0.0" yc="0.0" zc="11.664" 
+        ixx="56.082" ixy="0.0" ixz="0.0" 
+                     iyy="56.082"    iyz="0.0" 
+                               izz="105.479" />
 
 
     <joint name="base_joint" type="fixed">
@@ -39,7 +39,7 @@
     <joint name="shaft_joint" type="revolute">
         <parent link="stator_link" />
         <child link="rotor_link" />
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 ${body_h}" rpy="0 0 0" />
         <limit lower="${-1000*pi}" upper="${1000*pi}" effort="${motor_max_torque*reduction}" velocity="${motor_max_vel*pi/30/reduction}" />
         <axis xyz="0 0 1" />
     </joint>
