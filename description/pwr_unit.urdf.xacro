@@ -1,0 +1,106 @@
+<robot name="power_unit_v3">
+  <ros2_control name="power_unit_v3" type="system">
+    <hardware>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
+    </hardware>
+    <joint name="shaft_joint">
+      <command_interface name="position">
+        <param name="min">-3.141592653589793</param>
+        <param name="max">3.141592653589793</param>
+      </command_interface>
+      <command_interface name="velocity">
+        <param name="min">-1.9798604616026791</param>
+        <param name="max">1.9798604616026791</param>
+      </command_interface>
+      <command_interface name="effort">
+        <param name="min">-34.895</param>
+        <param name="max">34.895</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+  </ros2_control>
+  <gazebo>
+    <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+      <parameters>/home/niuniek/meldog-ros/install/power_unit_v3/share/power_unit_v3/controllers/joint_controller.yaml</parameters>
+    </plugin>
+  </gazebo>
+  <gazebo reference="shaft_joint">
+    <implicitSpringDamper>0</implicitSpringDamper>
+    <springStiffness>0.01</springStiffness>
+    <springReference>0.01</springReference>
+    <stopErp>0.01</stopErp>
+    <stopCfm>0.01</stopCfm>
+  </gazebo>
+  <gazebo reference="base_link">
+    <kinematic>true</kinematic>
+  </gazebo>
+  <link name="world" />
+  <link name="stator_link">
+    <visual>
+      <material name="">
+        <color rgba="0.0 0.0 1.0 1.0" />
+      </material>
+      <geometry>
+        <box size="0.1 0.1 0.086" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.043" />
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 0.086" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.043" />
+    </collision>
+    <inertial>
+      <mass value="10.0" />
+      <origin rpy="0 0 0" xyz="0 0 0.043" />
+      <inertia ixx="0.17" ixy="0.0" ixz="0.0" iyy="0.22" iyz="0.0" izz="0.25" />
+    </inertial>
+  </link>
+  <link name="rotor_link">
+    <visual>
+      <material name="">
+        <color rgba="1.0 0.0 0.0 1.0" />
+      </material>
+      <geometry>
+        <cylinder length="0.014" radius="0.0175" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.007" />
+    </visual>
+    <visual>
+      <material name="">
+        <color rgba="1.0 0.0 0.0 1.0" />
+      </material>
+      <geometry>
+        <box size="0.07 0.011666666666666667 0.014" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.007" />
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.014" radius="0.0175" />
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.007" />
+    </collision>
+    <inertial>
+      <mass value="0.585" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.011664" />
+      <inertia ixx="5.6081999999999996e-05" ixy="0.0" ixz="0.0" iyy="5.6081999999999996e-05" iyz="0.0" izz="0.000105479" />
+    </inertial>
+  </link>
+  <joint name="base_joint" type="fixed">
+    <parent link="world" />
+    <child link="stator_link" />
+    <origin rpy="0 0 0" xyz="0 0 0.1" />
+  </joint>
+  <joint name="shaft_joint" type="revolute">
+    <parent link="stator_link" />
+    <child link="rotor_link" />
+    <origin rpy="0 0 0" xyz="0 0 0.086" />
+    <limit effort="34.895" lower="-3141.592653589793" upper="3141.592653589793" velocity="18.906274745776084" />
+    <dynamics damping="0.1" friction="0.1" />
+    <axis xyz="0 0 1" />
+  </joint>
+</robot>

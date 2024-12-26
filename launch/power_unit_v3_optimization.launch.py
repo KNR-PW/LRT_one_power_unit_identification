@@ -13,7 +13,7 @@ from ament_index_python.packages import get_package_share_path
 def generate_launch_description():
     
     urdf_path = os.path.join(get_package_share_path('power_unit_v3'),
-                             'description','power_unit_v3.urdf.xacro')
+                             'description','pwr_unit.urdf.xacro')
     
     robot_description = ParameterValue(Command(['xacro ',urdf_path]),
                                        value_type=str)

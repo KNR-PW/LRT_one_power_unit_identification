@@ -59,22 +59,22 @@ def change_yaml_values(yaml_file, p_value, i_value, d_value):
 
 if __name__ == "__main__":
     # Retrieve parameters from command line arguments
-    damping_value = float(sys.argv[1])
-    friction_value = float(sys.argv[2])
-    spring_stiffness_value = float(sys.argv[3])
-    spring_reference_value = float(sys.argv[4])
-    stopErp_value = float(sys.argv[5])
-    stopCfm_value = float(sys.argv[6])
+    # damping_value = float(sys.argv[1])
+    # friction_value = float(sys.argv[2])
+    # spring_stiffness_value = float(sys.argv[3])
+    # spring_reference_value = float(sys.argv[4])
+    # stopErp_value = float(sys.argv[5])
+    # stopCfm_value = float(sys.argv[6])
 
     # Specify the path to the XML file
-    xml_file_path = '/home/niuniek/meldog-ros/src/power_unit_v3/description/power_unit_v3.urdf.xacro'
+    xml_file_path = '/home/niuniek/meldog-ros/src/power_unit_v3/description/pwr_unit.urdf.xacro'
     # Call the function to change XML values with received parameters
-    change_xml_values(xml_file_path, damping_value, friction_value, spring_stiffness_value, spring_reference_value, stopErp_value, stopCfm_value)
+    change_xml_values(xml_file_path, 0.1, 0.1, 0.01, 0.01, 0.01, 0.01)
 
     # Retrieve parameters from command line arguments for YAML file
-    p_value = float(sys.argv[7])
-    i_value = float(sys.argv[8])
-    d_value = float(sys.argv[9])
+    # p_value = float(sys.argv[7])
+    # i_value = float(sys.argv[8])
+    # d_value = float(sys.argv[9])
     yaml_file_path = '/home/niuniek/meldog-ros/src/power_unit_v3/controllers/joint_controller.yaml'
     # Call the function to change YAML values with received parameters
-    change_yaml_values(yaml_file_path, p_value, i_value, d_value)
+    change_yaml_values(yaml_file_path, 1.7, 0.0, 0.05)

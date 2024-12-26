@@ -1,31 +1,25 @@
 controller_manager:
   ros__parameters:
-    update_rate: 500
-
     joint_controller:
       type: joint_controller/JointController
-
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
-
+    update_rate: 500
 joint_controller:
   ros__parameters:
+    frequency: 500.0
     joint_names:
-      - shaft_joint
-      
+    - shaft_joint
     joint_params:
-      shaft_joint: 
+      shaft_joint:
+        effort_max: 34.895
         position_max: 1000000.0
         position_min: -1000000.0
         position_offset: 0.0
         velocity_max: 18.91
-        effort_max: 34.895
-
-    frequency: 500.0
-
     pid_gains:
       shaft_joint:
-        p: 1.7
         d: 0.05
         i: 0.0
         ilimit: 100.0
+        p: 1.7
