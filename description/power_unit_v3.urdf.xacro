@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
-<robot name="power_unit_v3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="power_unit_v3">
 
     <xacro:include filename="ros2_control/ros2_control.urdf.xacro" />
     <xacro:include filename="macros/link_macros.urdf.xacro" />
-    <xacro:include filename="gazebo/gz_properties.urdf.xacro"/>
-    <xacro:include filename="gazebo/gazebo.urdf.xacro"/>
+    <xacro:include filename="gazebo/gz_properties.urdf.xacro" />
+    <xacro:include filename="gazebo/gazebo.urdf.xacro" />
     <xacro:property name="body_l" value="0.1" />
     <xacro:property name="body_w" value="0.1" />
     <xacro:property name="body_h" value="0.086" />
@@ -13,21 +12,9 @@
 
     <link name="world" />
 
-    <xacro:stator_link_macro 
-        length="${body_l}" width="${body_w}" height="${body_h}" 
-        mass="10.0" 
-        xc="0" yc="0" zc="${body_h/2.0}" 
-        ixx="${0.17}"  ixy="${0.0}"  ixz="${0.0}" 
-                       iyy="${0.22}" iyz="${0.0}" 
-                                     izz="${0.25}" />
+    <xacro:stator_link_macro length="${body_l}" width="${body_w}" height="${body_h}" mass="10.0" xc="0" yc="0" zc="${body_h/2.0}" ixx="${0.17}" ixy="${0.0}" ixz="${0.0}" iyy="${0.22}" iyz="${0.0}" izz="${0.25}" />
 
-    <xacro:rotor_link_macro 
-        d="${shaft_d}" length="${shaft_h}" 
-        mass="0.585" 
-        xc="0.0" yc="0.0" zc="11.664" 
-        ixx="56.082" ixy="0.0" ixz="0.0" 
-                     iyy="56.082"    iyz="0.0" 
-                               izz="105.479" />
+    <xacro:rotor_link_macro d="${shaft_d}" length="${shaft_h}" mass="0.585" xc="0.0" yc="0.0" zc="11.664" ixx="56.082" ixy="0.0" ixz="0.0" iyy="56.082" iyz="0.0" izz="105.479" />
 
 
     <joint name="base_joint" type="fixed">
@@ -41,6 +28,7 @@
         <child link="rotor_link" />
         <origin xyz="0 0 ${body_h}" rpy="0 0 0" />
         <limit lower="${-1000*pi}" upper="${1000*pi}" effort="${motor_max_torque*reduction}" velocity="${motor_max_vel*pi/30/reduction}" />
+        <dynamics friction="0.0" damping="0.0" />
         <axis xyz="0 0 1" />
     </joint>
 

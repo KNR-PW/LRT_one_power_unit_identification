@@ -15,11 +15,11 @@ joint_controller:
       
     joint_params:
       shaft_joint: 
-        position_max: 3.14
-        position_min: -3.14
+        position_max: 1000000.0
+        position_min: -1000000.0
         position_offset: 0.0
-        velocity_max: 10.0
-        effort_max: 1000.0
+        velocity_max: 18.91
+        effort_max: 34.895
 
     frequency: 500.0
 
