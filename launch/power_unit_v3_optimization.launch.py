@@ -24,9 +24,15 @@ def generate_launch_description():
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
-        parameters=[{'robot_description' : robot_description,
-                     "use_sim_time" : True}]
+        parameters=[{'robot_description' : robot_description}]
     )
+    
+    #    robot_state_publisher_node = Node(
+    #     package="robot_state_publisher",
+    #     executable="robot_state_publisher",
+    #     parameters=[{'robot_description' : robot_description,
+    #                  "use_sim_time" : True}]
+    # )
     
     ros_distro = os.environ["ROS_DISTRO"]
     physics_engine="" if ros_distro=="humble" else "--physics-engine gz-physics-bullet-featherstone-plugin"

@@ -28,10 +28,10 @@
   </gazebo>
   <gazebo reference="shaft_joint">
     <implicitSpringDamper>0</implicitSpringDamper>
-    <springStiffness>0.01</springStiffness>
-    <springReference>0.01</springReference>
-    <stopErp>0.01</stopErp>
-    <stopCfm>0.01</stopCfm>
+    <springStiffness>0.00</springStiffness>
+    <springReference>0.00</springReference>
+    <stopErp>0.00</stopErp>
+    <stopCfm>0.00</stopCfm>
   </gazebo>
   <gazebo reference="base_link">
     <kinematic>true</kinematic>
@@ -100,7 +100,7 @@
     <child link="rotor_link" />
     <origin rpy="0 0 0" xyz="0 0 0.086" />
     <limit effort="34.895" lower="-3141.592653589793" upper="3141.592653589793" velocity="18.906274745776084" />
-    <dynamics damping="0.1" friction="0.1" />
+    <dynamics damping="0.00" friction="0.00" />
     <axis xyz="0 0 1" />
   </joint>
 </robot>

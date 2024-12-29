@@ -10,7 +10,7 @@ class MyHandler(FileSystemEventHandler):
 
     def on_modified(self, event):
         current_time = time.time()
-        if event.src_path.endswith("power_unit_v3.urdf.xacro") and current_time - self.last_modified > 1:
+        if event.src_path.endswith("pwr_unit.urdf.xacro") and current_time - self.last_modified > 1:
             self.last_modified = current_time
             # Change directory to ~/Humanoid_workspace and build the specific package
             workspace_dir = os.path.expanduser('~/meldog-ros')
@@ -25,7 +25,7 @@ class MyHandler(FileSystemEventHandler):
 
 def monitor_file_changes():
     # Path to the file to monitor
-    file_path = '/home/niuniek/meldog-ros/src/power_unit_v3/description/power_unit_v3.urdf.xacro'
+    file_path = '/home/niuniek/meldog-ros/src/power_unit_v3/description/pwr_unit.urdf.xacro'
     # Create a watchdog observer
     observer = Observer()
     observer.schedule(MyHandler(), path=os.path.dirname(file_path))
