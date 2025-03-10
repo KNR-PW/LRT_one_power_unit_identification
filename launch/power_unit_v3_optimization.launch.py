@@ -27,13 +27,6 @@ def generate_launch_description():
         parameters=[{'robot_description' : robot_description}]
     )
     
-    #    robot_state_publisher_node = Node(
-    #     package="robot_state_publisher",
-    #     executable="robot_state_publisher",
-    #     parameters=[{'robot_description' : robot_description,
-    #                  "use_sim_time" : True}]
-    # )
-    
     ros_distro = os.environ["ROS_DISTRO"]
     physics_engine="" if ros_distro=="humble" else "--physics-engine gz-physics-bullet-featherstone-plugin"
     
@@ -74,7 +67,7 @@ def generate_launch_description():
     
     start_trajectory = ExecuteProcess(
         cmd=['ros2', 'run', 'position_nodes', 'command_position_node', '--ros-args', '-p',
-             'motion_type:="trapezoid"'],
+             'motion_type:="sine"','-p',"motion_time:=4.0"],
         output='screen'
     ) 
     

@@ -1,0 +1,15 @@
+sin1.0
+Błąd średniokwadratowy pozycji: 0.023056
+Błąd średniokwadratowy prędkości: 0.1639
+
+triangle1.0
+Błąd średniokwadratowy pozycji: 0.023056
+Błąd średniokwadratowy prędkości: 0.1639
+
+trapezoid1.0
+Błąd średniokwadratowy pozycji: 0.021372
+Błąd średniokwadratowy prędkości: 0.15964
+
+square1.0
+Błąd średniokwadratowy pozycji: 0.020073
+Błąd średniokwadratowy prędkości: 0.87306
